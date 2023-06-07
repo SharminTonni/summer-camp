@@ -15,9 +15,15 @@ const Navigation = () => {
       <li>
         <Link to="/">Home</Link>
       </li>
+      <li>
+        <Link to="/class">Classes</Link>
+      </li>
 
       {user ? (
         <>
+          <li>
+            <Link to="/instructor">Instructors</Link>
+          </li>
           <img src={user?.photoURL} className="w-12 h-12 rounded-full" alt="" />
           <li>
             <button onClick={handleLogOut} className="btn btn-ghost">

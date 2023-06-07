@@ -1,11 +1,13 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../Providers/AuthProvider";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import SocialLogin from "./Socail/SocialLogin";
 
 const Signup = () => {
   const { createUser, updateUser } = useContext(AuthContext);
+  const [btnDisable, setBtnDisable] = useState(false);
   const navigate = useNavigate();
   const {
     register,
@@ -16,23 +18,45 @@ const Signup = () => {
   } = useForm();
   const onSubmit = (data) => {
     console.log(data);
+    if (data.password !== data.confirmPassword) {
+      setBtnDisable(true);
+    } else {
+      setBtnDisable(false);
+    }
     createUser(data.email, data.password)
       .then((result) => {
         const createduser = result.user;
         console.log(createduser);
         updateUser(data.name, data.photo)
           .then(() => {
-            reset();
+            const savedUser = {
+              name: data.name,
+              email: data.email,
+              photo: data.photo,
+            };
+            fetch("http://localhost:5000/users", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(savedUser),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                if (data.insertedId) {
+                  reset();
+                  navigate("/");
+                  Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "User is created successfully",
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
+                }
+              });
           })
           .catch((err) => console.log(err));
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "User is created successfully",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        navigate("/");
       })
       .catch((err) => console.log(err));
   };
@@ -118,14 +142,51 @@ const Signup = () => {
                 </span>
               )}
             </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Confirm Password</span>
+              </label>
+              <input
+                type="password"
+                {...register("confirmPassword", {
+                  required: true,
+                  min: 6,
+                  //   max: 20,
+                  pattern: /[^A-Z!@#$%^&*()]$/,
+                })}
+                placeholder="password"
+                className="input input-bordered"
+              />
+              {errors.password?.type === "required" && (
+                <span className="text-red-600">Password is required</span>
+              )}
+              {errors.password?.type === "min" && (
+                <span className="text-red-600">
+                  min 6 character is required
+                </span>
+              )}
+              {/* {errors.password?.type === "max" && (
+                <span>max 20 character is required</span>
+              )} */}
+              {errors.password?.type === "pattern" && (
+                <span className="text-red-600">
+                  no uppercase and no special charater is allowed
+                </span>
+              )}
+            </div>
             <div className="form-control mt-6">
               <input
+                disabled={btnDisable}
                 type="submit"
                 className="btn btn-success btn-outline"
                 value="Sign Up"
               />
             </div>
           </form>
+          <SocialLogin></SocialLogin>
+          <p>
+            Already Have an Account? <Link to="/login">Please Login</Link>
+          </p>
         </div>
       </div>
     </div>

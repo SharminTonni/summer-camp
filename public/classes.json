@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Indian Classical Music",
+    "image": "https://4.imimg.com/data4/GF/DL/ANDROID-52350636/product.jpeg",
+    "instructorName": "John Doe",
+    "availableSeats": 10,
+    "students": 6,
+    "price": 99.99
+  },
+  {
+    "name": "Rabindra Sangeet",
+    "image": "https://i.ytimg.com/vi/-U0u30BTDrY/maxresdefault.jpg",
+    "instructorName": "Jane Smith",
+    "availableSeats": 5,
+    "students": 6,
+    "price": 49.99
+  },
+  {
+    "name": "Nazrul Geeti",
+    "image": "https://i.ytimg.com/vi/HiGYcFcIud8/maxresdefault.jpg",
+    "instructorName": "Michael Johnson",
+    "availableSeats": 8,
+    "students": 6,
+    "price": 79.99
+  },
+  {
+    "name": "Baoul Sangeet",
+    "image": "https://i.ytimg.com/vi/4s-YcM9rqwg/maxresdefault.jpg",
+    "instructorName": "Emily Wilson",
+    "availableSeats": 12,
+    "students": 6,
+    "price": 119.99
+  },
+  {
+    "name": "Beena Music",
+    "image": "https://www.classicalclaps.com/wp-content/uploads/2018/06/MusicInMyBlood-JayMandal.jpg",
+    "instructorName": "Robert Brown",
+    "availableSeats": 15,
+    "students": 6,
+    "price": 149.99
+  },
+  {
+    "name": "Bollywood Music",
+    "image": "https://m.media-amazon.com/images/I/510EYa43ygL._SX354_SY354_BL0_QL100__UXNaN_FMjpg_QL85_.jpg",
+    "instructorName": "Sophia Lee",
+    "availableSeats": 3,
+    "students": 6,
+    "price": 29.99
+  }
+]

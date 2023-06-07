@@ -4,6 +4,7 @@ import { AuthContext } from "../Providers/AuthProvider";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import SocialLogin from "./Socail/SocialLogin";
 
 const Login = () => {
   const { signinUser } = useContext(AuthContext);
@@ -103,6 +104,8 @@ const Login = () => {
               />
             </div>
           </form>
+          <hr />
+          <SocialLogin></SocialLogin>
           <p className="pb-5 text-center">
             Donot have an Acoount? <Link to="/signup">Please signup</Link>
           </p>
