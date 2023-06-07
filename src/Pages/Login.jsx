@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../Providers/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import SocialLogin from "./Socail/SocialLogin";
@@ -9,6 +9,9 @@ import SocialLogin from "./Socail/SocialLogin";
 const Login = () => {
   const { signinUser } = useContext(AuthContext);
   const [passwordShow, setPasswordShow] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
   const {
     register,
     handleSubmit,
@@ -28,6 +31,7 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        navigate(from, { replace: true });
       })
       .catch((err) => console.log(err));
   };

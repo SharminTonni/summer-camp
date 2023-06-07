@@ -1,7 +1,8 @@
+import React from "react";
 import { useInstructor } from "../../../hooks/useInstructor";
 import SingleInstructor from "./SingleInstructor";
 
-const Instructors = () => {
+const AllInstructorPage = () => {
   const [instructors] = useInstructor();
   console.log(instructors);
   return (
@@ -12,7 +13,7 @@ const Instructors = () => {
         </h3>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {instructors.slice(0, 6).map((instructor) => (
+        {instructors.map((instructor) => (
           <SingleInstructor
             key={instructor._id}
             instructor={instructor}
@@ -23,4 +24,4 @@ const Instructors = () => {
   );
 };
 
-export default Instructors;
+export default AllInstructorPage;
