@@ -7,7 +7,7 @@ import { useCart } from "../hooks/useCart";
 const Navigation = () => {
   const { user, logOut } = useContext(AuthContext);
   const [cart] = useCart();
-  console.log(cart);
+
   const handleLogOut = () => {
     logOut()
       .then(() => {})
@@ -31,10 +31,12 @@ const Navigation = () => {
             <Link to="/dashboard">Dashboard</Link>
           </li>
           <li className="">
-            <button className="btn">
-              <FaShoppingCart></FaShoppingCart>
-              <div className="badge">+{cart?.length || 0}</div>
-            </button>
+            <Link to="/dashboard/mycart">
+              <button className="flex items-center">
+                <FaShoppingCart></FaShoppingCart>
+                <div className="badge">+{cart?.length || 0}</div>
+              </button>
+            </Link>
           </li>
           <img src={user?.photoURL} className="w-12 h-12 rounded-full" alt="" />
           <li>
@@ -51,10 +53,10 @@ const Navigation = () => {
     </>
   );
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar py-4 bg-red-100">
       <div className="navbar-start">
         <div className="dropdown">
-          <label tabIndex={0} className="btn btn-ghost lg:hidden">
+          <label tabIndex={0} className="btn lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -72,12 +74,12 @@ const Navigation = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-sm flex flex-col items-center font-semibold text-sm dropdown-content mt-3 p-2 bg-red-200 rounded-box w-52"
           >
             {navOptions}
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost normal-case text-xl">
+        <Link to="/" className="btn normal-case text-xl">
           <img
             className="h-12 w-12"
             src="https://logowik.com/content/uploads/images/935_music.jpg"
@@ -89,9 +91,9 @@ const Navigation = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navOptions}</ul>
       </div>
-      <div className="navbar-end">
+      {/* <div className="navbar-end">
         <a className="btn">Button</a>
-      </div>
+      </div> */}
     </div>
   );
 };

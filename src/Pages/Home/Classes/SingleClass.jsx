@@ -9,12 +9,10 @@ const SingleClass = ({ item }) => {
   const { image, price, name, availableSeats, students, instructorName, _id } =
     item;
   const [disable, setDisable] = useState(false);
-  const [users] = useUsers();
+
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-
-  console.log(users);
 
   const handleSelect = () => {
     if (user) {
@@ -65,12 +63,12 @@ const SingleClass = ({ item }) => {
   };
 
   return (
-    <div className="card lg:card-side bg-base-100 shadow-xl">
+    <div className="card lg:card-side bg-base-100 shadow-xl shadow-red-200">
       <figure className="">
         <img className="h-full" src={image} alt="Album" />
       </figure>
       <div className="p-6 w-1/2">
-        <h2 className="card-title text-amber-600">{name}</h2>
+        <h2 className="card-title text-red-600">{name}</h2>
         <p>Instructor: {instructorName}</p>
         <p>Price: ${price}</p>
         <p>Students: {students}</p>
@@ -78,7 +76,7 @@ const SingleClass = ({ item }) => {
         <button
           disabled={disable}
           onClick={() => handleSelect(item)}
-          className="btn text-amber-600 border-b-4 border-amber-600 hover:bg-amber-600 hover:text-black"
+          className="btn text-red-600 border-b-4 border-red-600 hover:bg-slate-500 hover:text-black"
         >
           Select
         </button>

@@ -3,11 +3,11 @@ import SingleInstructor from "./SingleInstructor";
 
 const Instructors = () => {
   const [instructors] = useInstructor();
-  console.log(instructors);
+  //   console.log(instructors);
   return (
     <div className="mb-12">
       <div className="mx-auto text-center my-6">
-        <h3 className="text-amber-600 text-3xl font-bold">
+        <h3 className="text-red-600 text-3xl font-bold">
           --------Our Instructors--------
         </h3>
       </div>

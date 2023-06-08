@@ -8,5 +8,5 @@ export const useUsers = () => {
       return res.json();
     },
   });
-  return [users];
+  return [users, refetch];
 };

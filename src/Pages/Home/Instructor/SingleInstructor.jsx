@@ -2,7 +2,7 @@ import React from "react";
 
 const SingleInstructor = ({ instructor }) => {
   return (
-    <div className="card lg:card-side bg-base-100 shadow-xl">
+    <div className="card lg:card-side bg-base-100 shadow-xl shadow-red-200">
       <figure>
         <img
           className="h-[200px] w-[200px]"
