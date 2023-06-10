@@ -8,5 +8,5 @@ export const useInstructor = () => {
       return res.json();
     },
   });
-  return [instructors];
+  return [instructors, refetch];
 };

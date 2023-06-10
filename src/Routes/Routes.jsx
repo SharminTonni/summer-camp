@@ -10,6 +10,10 @@ import PrivateRoute from "./PrivateRoute";
 import MyCart from "../Pages/Dashbord/MyCart/MyCart";
 import ClassesPage from "../Pages/Home/ClassesPage/ClassesPage";
 import ManageUsers from "../Pages/Dashbord/ManageUsers/ManageUsers";
+import AdminRoute from "./AdminRoute";
+import AddClass from "../Pages/Dashbord/AddClass/AddClass";
+import InstructorRoute from "./InstructorRoute";
+import MyClasses from "../Pages/Dashbord/MyClasses/MyClasses";
 
 const router = createBrowserRouter([
   {
@@ -51,8 +55,28 @@ const router = createBrowserRouter([
         element: <MyCart></MyCart>,
       },
       {
+        path: "addclass",
+        element: (
+          <InstructorRoute>
+            <AddClass></AddClass>
+          </InstructorRoute>
+        ),
+      },
+      {
+        path: "myclass",
+        element: (
+          <InstructorRoute>
+            <MyClasses></MyClasses>
+          </InstructorRoute>
+        ),
+      },
+      {
         path: "manageusers",
-        element: <ManageUsers></ManageUsers>,
+        element: (
+          <AdminRoute>
+            <ManageUsers></ManageUsers>
+          </AdminRoute>
+        ),
       },
     ],
   },

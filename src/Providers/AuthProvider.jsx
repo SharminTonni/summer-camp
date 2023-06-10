@@ -57,12 +57,11 @@ const AuthProvider = ({ children }) => {
           .then((res) => {
             // console.log(res.data.jwtToken);
             localStorage.setItem("access_token", res.data.jwtToken);
+            setLoading(false);
           });
       } else {
         localStorage.removeItem("access_token");
       }
-
-      setLoading(false);
     });
     return () => {
       return unsubscribe();

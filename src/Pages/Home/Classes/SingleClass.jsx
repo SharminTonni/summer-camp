@@ -3,13 +3,14 @@ import { AuthContext } from "../../../Providers/AuthProvider";
 import { useUsers } from "../../../hooks/useUsers";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useAdmin } from "../../../hooks/useAdmin";
 
 const SingleClass = ({ item }) => {
   //   const { user } = useContext(AuthContext);
   const { image, price, name, availableSeats, students, instructorName, _id } =
-    item;
+    item || "";
   const [disable, setDisable] = useState(false);
-
+  const [isAdmin] = useAdmin();
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -26,6 +27,7 @@ const SingleClass = ({ item }) => {
         students,
         instructorName,
       };
+      setDisable(true);
       fetch("http://localhost:5000/carts", {
         method: "POST",
         headers: {

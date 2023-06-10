@@ -1,20 +1,26 @@
 import { NavLink, Outlet } from "react-router-dom";
 import MyCart from "../MyCart/MyCart";
 import {
+  FaCuttlefish,
   FaHome,
   FaShoppingCart,
   FaUser,
   FaUserAlt,
   FaUserAltSlash,
   FaUserShield,
+  FaCreativeCommons,
   FaWallet,
 } from "react-icons/fa";
 import { useCart } from "../../../hooks/useCart";
+import { useAdmin } from "../../../hooks/useAdmin";
+import { useIsInstructor } from "../../../hooks/useIsInstructor";
 
 const Dashboard = () => {
   const [cart] = useCart();
   //   Todo make admin by server
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
+  const [isInstructorData] = useIsInstructor();
+  //   const isAdmin = true;
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -34,25 +40,52 @@ const Dashboard = () => {
           {/* Sidebar content here */}
 
           {isAdmin && (
-            <li>
-              <NavLink to="/dashboard/manageusers">
-                Manage Users <FaUser></FaUser>
-              </NavLink>
-            </li>
+            <>
+              <li>
+                <NavLink to="/dashboard/manageusers">
+                  Manage Users <FaUser></FaUser>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/manageclass">
+                  Manage Class <FaCreativeCommons></FaCreativeCommons>
+                </NavLink>
+              </li>
+            </>
           )}
 
-          <li>
-            <NavLink to="/dashboard/mycart">
-              My Cart
-              <FaShoppingCart></FaShoppingCart>
-              <span className="badge">{cart?.length} </span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/history">
-              Payment History<FaWallet></FaWallet>
-            </NavLink>
-          </li>
+          {isInstructorData && (
+            <>
+              <li>
+                <NavLink to="/dashboard/addclass">
+                  Add Class <FaUser></FaUser>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/myclass">
+                  My Class <FaCuttlefish></FaCuttlefish>
+                </NavLink>
+              </li>
+            </>
+          )}
+
+          {!isAdmin && !isInstructorData && (
+            <>
+              <li>
+                <NavLink to="/dashboard/mycart">
+                  My Cart
+                  <FaShoppingCart></FaShoppingCart>
+                  <span className="badge">{cart?.length} </span>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/history">
+                  Payment History<FaWallet></FaWallet>
+                </NavLink>
+              </li>
+            </>
+          )}
+
           <div className="divider"></div>
           <li>
             <NavLink to="/">
