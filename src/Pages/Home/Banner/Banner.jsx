@@ -22,11 +22,6 @@ const Banner = () => {
           <img src={image4} />
         </div>
       </Carousel>
-      <div className="mx-auto text-center my-6">
-        <h3 className="text-red-600 text-3xl font-bold">
-          --------Popular Classes--------
-        </h3>
-      </div>
     </div>
   );
 };
