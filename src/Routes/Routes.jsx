@@ -15,6 +15,9 @@ import AddClass from "../Pages/Dashbord/AddClass/AddClass";
 import InstructorRoute from "./InstructorRoute";
 import MyClasses from "../Pages/Dashbord/MyClasses/MyClasses";
 import ManageClass from "../Pages/Dashbord/ManageClass/ManageClass";
+import Feedback from "../Pages/Dashbord/FeedBack/Feedback";
+import Payment from "../Pages/Dashbord/Payment/Payment";
+import FeedBackPage from "../Pages/Dashbord/FeedBack/FeedBackPage";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +59,10 @@ const router = createBrowserRouter([
         element: <MyCart></MyCart>,
       },
       {
+        path: "payment",
+        element: <Payment></Payment>,
+      },
+      {
         path: "addclass",
         element: (
           <InstructorRoute>
@@ -72,6 +79,14 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "feedback",
+        element: (
+          <InstructorRoute>
+            <FeedBackPage></FeedBackPage>
+          </InstructorRoute>
+        ),
+      },
+      {
         path: "manageusers",
         element: (
           <AdminRoute>
@@ -84,6 +99,14 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <ManageClass></ManageClass>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "feedback/:id",
+        element: (
+          <AdminRoute>
+            <Feedback></Feedback>
           </AdminRoute>
         ),
       },

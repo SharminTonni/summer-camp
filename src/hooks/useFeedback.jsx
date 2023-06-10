@@ -3,17 +3,17 @@ import { AuthContext } from "../Providers/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import { useAxiosSecure } from "./useAxiosSecure";
 
-export const useIsInstructor = () => {
+export const useFeedback = () => {
   const { user, loading } = useContext(AuthContext);
   const [axiosSecure] = useAxiosSecure();
   const token = localStorage.getItem("access_token");
-  const { data: isInstructorData, isLoading: isInstructorLoading } = useQuery({
-    queryKey: ["isInstructor", user?.email],
+  const { data: feedback = [], refetch } = useQuery({
+    queryKey: ["feedback", user?.email],
     enabled: !loading && !!user?.email && !!token,
     queryFn: async () => {
-      const res = await axiosSecure.get(`/user/instructor/${user?.email}`);
-      return res.data.instructor;
+      const res = await axiosSecure.get(`/feedback?email=${user?.email}`);
+      return res.data;
     },
   });
-  return [isInstructorData, isInstructorLoading];
+  return [feedback, refetch];
 };

@@ -10,6 +10,7 @@ import {
   FaUserShield,
   FaCreativeCommons,
   FaWallet,
+  FaFeatherAlt,
 } from "react-icons/fa";
 import { useCart } from "../../../hooks/useCart";
 import { useAdmin } from "../../../hooks/useAdmin";
@@ -64,6 +65,11 @@ const Dashboard = () => {
               <li>
                 <NavLink to="/dashboard/myclass">
                   My Class <FaCuttlefish></FaCuttlefish>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/feedback">
+                  FeedBack <FaFeatherAlt></FaFeatherAlt>
                 </NavLink>
               </li>
             </>

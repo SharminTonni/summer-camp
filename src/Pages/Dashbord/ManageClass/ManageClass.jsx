@@ -2,6 +2,7 @@ import { FaTrash, FaTrashAlt } from "react-icons/fa";
 import { useClassesAdmin } from "../../../hooks/useClassesAdmin";
 import Swal from "sweetalert2";
 import { useAxiosSecure } from "../../../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const ManageClass = () => {
   const [classesAdmin, refetch] = useClassesAdmin();
@@ -137,12 +138,11 @@ const ManageClass = () => {
                 </td>
 
                 <th>
-                  <button
-                    onClick={() => handleDelete(myclass)}
-                    className="btn btn-ghost text-white bg-amber-600"
-                  >
-                    FeedBack
-                  </button>
+                  <Link to={`/dashboard/feedback/${myclass._id}`}>
+                    <button className="btn btn-ghost text-white bg-amber-600">
+                      FeedBack
+                    </button>
+                  </Link>
                 </th>
                 <th>
                   <button
