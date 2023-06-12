@@ -18,11 +18,13 @@ import ManageClass from "../Pages/Dashbord/ManageClass/ManageClass";
 import Feedback from "../Pages/Dashbord/FeedBack/Feedback";
 import Payment from "../Pages/Dashbord/Payment/Payment";
 import FeedBackPage from "../Pages/Dashbord/FeedBack/FeedBackPage";
+import ErrorPage from "../Pages/ErrorElement/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",

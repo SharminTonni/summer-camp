@@ -4,12 +4,13 @@ import { useNavigate } from "react-router-dom";
 import axios, { Axios } from "axios";
 import { config } from "daisyui";
 
+const axiosSecure = axios.create({
+  baseURL: "http://localhost:5000",
+});
+
 export const useAxiosSecure = () => {
   const { logOut } = useContext(AuthContext);
   const navigate = useNavigate();
-  const axiosSecure = axios.create({
-    baseURL: "http://localhost:5000",
-  });
 
   useEffect(() => {
     axiosSecure.interceptors.request.use((config) => {
@@ -33,6 +34,6 @@ export const useAxiosSecure = () => {
         return Promise.reject(error);
       }
     );
-  }, [navigate, axiosSecure, logOut]);
+  }, [navigate, logOut]);
   return [axiosSecure];
 };
