@@ -8,6 +8,8 @@ import image4 from "../../../assets/banner/image4.jpg";
 const Banner = () => {
   return (
     <div>
+      {/* TODO::: Change this Carousel */}
+
       <Carousel className="text-center">
         <div>
           <img src={image1} />

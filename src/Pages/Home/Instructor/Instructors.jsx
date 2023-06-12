@@ -7,9 +7,7 @@ const Instructors = () => {
   return (
     <div className="mb-12">
       <div className="mx-auto text-center my-6">
-        <h3 className="text-red-600 text-3xl font-bold">
-          --------Our Instructors--------
-        </h3>
+        <h3 className="text-red-600 text-3xl font-bold">Our Instructors</h3>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {instructors.slice(0, 6).map((instructor) => (
