@@ -4,8 +4,16 @@ import { useAxiosSecure } from "../../../hooks/useAxiosSecure";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import { useCart } from "../../../hooks/useCart";
+import { useParams } from "react-router-dom";
 
-const CheckoutForm = ({ price, cart }) => {
+const CheckoutForm = ({ cart, id }) => {
+  const [singleCart, setSingleCart] = useState({});
+  useEffect(() => {
+    fetch(`http://localhost:5000/cart/${id}`)
+      .then((res) => res.json())
+      .then((data) => setSingleCart(data));
+  }, [id]);
+  console.log(singleCart?.price, id);
   const { user, loading } = useContext(AuthContext);
   const stripe = useStripe();
   const elements = useElements();
@@ -17,13 +25,15 @@ const CheckoutForm = ({ price, cart }) => {
   const [processing, setProcessing] = useState(false);
   const [transactionID, setTransectionId] = useState("");
   useEffect(() => {
-    if (price > 0) {
-      axiosSecure.post("/create-payment-intent", { price }).then((res) => {
-        console.log(res.data);
-        setClientSecret(res.data.clientSecret);
-      });
+    if (singleCart?.price > 0) {
+      axiosSecure
+        .post("/create-payment-intent", { price: singleCart?.price })
+        .then((res) => {
+          console.log(res.data);
+          setClientSecret(res.data.clientSecret);
+        });
     }
-  }, [token, price, axiosSecure]);
+  }, [token, singleCart, axiosSecure]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -66,29 +76,32 @@ const CheckoutForm = ({ price, cart }) => {
     }
     console.log("payment intent", paymentIntent);
     setProcessing(false);
-    if (paymentIntent.status == "succeeded") {
+    if (paymentIntent?.status == "succeeded") {
       //   const transectionId = paymentIntent.id;
       setTransectionId(paymentIntent.id);
       const payment = {
         email: user?.email,
         transactionId: paymentIntent.id,
-        price,
-        quantity: cart?.length,
-        cartItems: cart.map((item) => item?._id),
-        itemName: cart.map((item) => item?.name),
-        menuItems: cart.map((item) => item?.classId),
-        menuStudent: cart.map((item) => item?.students),
-        menuSeats: cart.map((item) => item?.availableSeats),
+        price: singleCart?.price,
+        name: singleCart?.name,
+        cartId: id,
+
+        // quantity: cart?.length,
+        // cartItems: cart.map((item) => item?._id),
+        // itemName: cart.map((item) => item?.name),
+        // menuItems: cart.map((item) => item?.classId),
+        // menuStudent: cart.map((item) => item?.students),
+        // menuSeats: cart.map((item) => item?.availableSeats),
         date: new Date(),
         status: "pending",
       };
 
-      axiosSecure.post("/payment", payment).then((res) => {
+      axiosSecure.put(`/payment/${id}`, payment).then((res) => {
         console.log(res.data);
         if (
-          res.data.insertResult.insertedId &&
+          res.data.insertedResult.insertedId &&
           res.data.deletedResult.deletedCount > 0
-          //   res.data.updatedStudents.modifiedCount > 0 &&
+          //   res.data.updatedClass.modifiedCount > 0
           //   res.data.updatedAvailabeSeats.modifiedCount > 0
         ) {
           refetch();

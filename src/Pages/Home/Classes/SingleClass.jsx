@@ -4,13 +4,15 @@ import { useUsers } from "../../../hooks/useUsers";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useAdmin } from "../../../hooks/useAdmin";
+import { useIsInstructor } from "../../../hooks/useIsInstructor";
 
 const SingleClass = ({ item }) => {
   //   const { user } = useContext(AuthContext);
-  const { image, price, name, availableSeats, students, instructorName, _id } =
-    item || "";
+
+  const { image, price, name, students, instructorName, _id } = item || "";
   const [disable, setDisable] = useState(false);
   const [isAdmin] = useAdmin();
+  const [isInstructorData] = useIsInstructor();
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -23,11 +25,11 @@ const SingleClass = ({ item }) => {
         image,
         price,
         name,
-        availableSeats,
+        // availableSeats,
         students,
         instructorName,
       };
-      setDisable(true);
+
       fetch("http://localhost:5000/carts", {
         method: "POST",
         headers: {
@@ -65,7 +67,13 @@ const SingleClass = ({ item }) => {
   };
 
   return (
-    <div className="card lg:card-side bg-base-100 shadow-xl shadow-red-200">
+    <div
+      className={`${
+        item?.availableSeats == 0
+          ? "bg-red-600 card lg:card-side shadow-xl shadow-red-200"
+          : "card lg:card-side shadow-xl shadow-red-200 bg-base-100"
+      }`}
+    >
       <figure className="">
         <img className="h-full" src={image} alt="Album" />
       </figure>
@@ -74,14 +82,24 @@ const SingleClass = ({ item }) => {
         <p>Instructor: {instructorName}</p>
         <p>Price: ${price}</p>
         <p>Students: {students}</p>
-        <p>Available Seats: {availableSeats}</p>
-        <button
-          disabled={disable}
-          onClick={() => handleSelect(item)}
-          className="btn text-red-600 border-b-4 border-red-600 hover:bg-slate-500 hover:text-black"
-        >
-          Select
-        </button>
+        {/* <p>Available Seats: {item?.availableSeats}</p> */}
+        {isAdmin || isInstructorData || item?.availableSeats == 0 ? (
+          <button
+            disabled
+            onClick={() => handleSelect(item)}
+            className="btn text-red-600 border-b-4 border-red-600 hover:bg-slate-500 hover:text-black"
+          >
+            Select
+          </button>
+        ) : (
+          <button
+            disabled={disable}
+            onClick={() => handleSelect(item)}
+            className="btn text-red-600 border-b-4 border-red-600 hover:bg-slate-500 hover:text-black"
+          >
+            Select
+          </button>
+        )}
       </div>
     </div>
   );

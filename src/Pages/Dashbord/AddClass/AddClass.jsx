@@ -32,10 +32,18 @@ const AddClass = () => {
       .then((imgRes) => {
         if (imgRes.success) {
           const imgURL = imgRes.data.display_url;
-          const { price, image, name, instructorName, availableSeats, email } =
-            data;
+          const {
+            price,
+            image,
+            name,
+            instructorName,
+            availableSeats,
+            email,
+            students,
+          } = data;
           const classItem = {
             price: parseFloat(price),
+            students: parseFloat(students),
             image: imgURL,
             name,
             instructorName,
@@ -152,6 +160,19 @@ const AddClass = () => {
             type="number"
             placeholder="Type here"
             className="input input-bordered w-full"
+          />
+        </div>
+        <div>
+          <label className="label">
+            <span className="label-text">Students</span>
+          </label>
+          <input
+            {...register("students", { required: true })}
+            type="number"
+            defaultValue="0"
+            // placeholder="Type here"
+            className="input input-bordered w-full"
+            readOnly
           />
         </div>
         <div className="">

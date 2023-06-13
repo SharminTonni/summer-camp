@@ -61,7 +61,7 @@ const Signup = () => {
       .catch((err) => console.log(err));
   };
   return (
-    <div className="hero min-h-screen bg-base-200">
+    <div className="hero min-h-screen p-6 bg-base-200">
       <div className="hero-content flex-col">
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">SignUp now!</h1>
@@ -120,7 +120,8 @@ const Signup = () => {
                   required: true,
                   min: 6,
                   //   max: 20,
-                  pattern: /[^A-Z!@#$%^&*()]$/,
+                  pattern:
+                    /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).*$/,
                 })}
                 placeholder="password"
                 className="input input-bordered"
@@ -138,7 +139,7 @@ const Signup = () => {
               )} */}
               {errors.password?.type === "pattern" && (
                 <span className="text-red-600">
-                  no uppercase and no special charater is allowed
+                  one uppercase and one special character is required
                 </span>
               )}
             </div>
@@ -152,7 +153,8 @@ const Signup = () => {
                   required: true,
                   min: 6,
                   //   max: 20,
-                  pattern: /[^A-Z!@#$%^&*()]$/,
+                  pattern:
+                    /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).*$/,
                 })}
                 placeholder="password"
                 className="input input-bordered"
@@ -170,7 +172,7 @@ const Signup = () => {
               )} */}
               {errors.password?.type === "pattern" && (
                 <span className="text-red-600">
-                  no uppercase and no special charater is allowed
+                  one uppercase and one special character is allowed
                 </span>
               )}
             </div>
@@ -184,7 +186,7 @@ const Signup = () => {
             </div>
           </form>
           <SocialLogin></SocialLogin>
-          <p>
+          <p className="pb-4">
             Already Have an Account? <Link to="/login">Please Login</Link>
           </p>
         </div>

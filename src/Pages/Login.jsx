@@ -67,7 +67,8 @@ const Login = () => {
                   required: true,
                   min: 6,
                   //   max: 20,
-                  pattern: /[^A-Z!@#$%^&*()]$/,
+                  pattern:
+                    /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).*$/,
                 })}
                 placeholder="password"
                 className="input input-bordered"

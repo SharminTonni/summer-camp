@@ -17,13 +17,15 @@ import { useAdmin } from "../../../hooks/useAdmin";
 import { useIsInstructor } from "../../../hooks/useIsInstructor";
 import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
+import { useClass } from "../../../hooks/useClass";
 
 const Dashboard = () => {
   const [cart] = useCart();
+
   //   Todo make admin by server
   const [isAdmin, isAdminLoading] = useAdmin();
   const { user } = useContext(AuthContext);
-  const [isInstructorData] = useIsInstructor();
+  const [isInstructorData, isInstructorLoading] = useIsInstructor();
   //   const isAdmin = true;
   return (
     <div className="drawer lg:drawer-open">
@@ -58,7 +60,7 @@ const Dashboard = () => {
             </>
           )}
 
-          {isInstructorData && (
+          {!isInstructorLoading && isInstructorData && (
             <>
               <li>
                 <NavLink to="/dashboard/addclass">
@@ -78,7 +80,7 @@ const Dashboard = () => {
             </>
           )}
 
-          {(user?.role !== "admin" || user?.role !== "instructor") && (
+          {!isAdmin && !isInstructorData && (
             <>
               <li>
                 <NavLink to="/dashboard/mycart">
