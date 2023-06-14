@@ -5,7 +5,7 @@ import axios, { Axios } from "axios";
 import { config } from "daisyui";
 
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://summer-camp-server-alpha-gold.vercel.app",
 });
 
 export const useAxiosSecure = () => {

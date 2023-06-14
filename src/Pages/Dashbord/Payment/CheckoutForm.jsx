@@ -9,7 +9,7 @@ import { NavLink, useParams } from "react-router-dom";
 const CheckoutForm = ({ cart, id }) => {
   const [singleCart, setSingleCart] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:5000/cart/${id}`)
+    fetch(`https://summer-camp-server-alpha-gold.vercel.app/cart/${id}`)
       .then((res) => res.json())
       .then((data) => setSingleCart(data));
   }, [id]);

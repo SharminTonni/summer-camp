@@ -11,7 +11,7 @@ const Feedback = () => {
 
   useEffect(() => {
     axiosSecure
-      .get(`http://localhost:5000/feedback/${id}`)
+      .get(`https://summer-camp-server-alpha-gold.vercel.app/feedback/${id}`)
       .then((res) => setSingleClass(res.data));
   }, [id, axiosSecure]);
 

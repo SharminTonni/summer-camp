@@ -28,9 +28,12 @@ const ManageUsers = () => {
     });
   };
   const handeleAdmin = (user) => {
-    fetch(`http://localhost:5000/user/admin/${user._id}`, {
-      method: "PUT",
-    })
+    fetch(
+      `https://summer-camp-server-alpha-gold.vercel.app/user/admin/${user._id}`,
+      {
+        method: "PUT",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount) {
@@ -48,9 +51,12 @@ const ManageUsers = () => {
       });
   };
   const handleInstructor = (user) => {
-    fetch(`http://localhost:5000/user/instructor/${user._id}`, {
-      method: "PUT",
-    })
+    fetch(
+      `https://summer-camp-server-alpha-gold.vercel.app/user/instructor/${user._id}`,
+      {
+        method: "PUT",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount) {

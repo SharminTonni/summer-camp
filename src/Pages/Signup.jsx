@@ -34,7 +34,7 @@ const Signup = () => {
               email: data.email,
               photo: data.photo,
             };
-            fetch("http://localhost:5000/users", {
+            fetch("https://summer-camp-server-alpha-gold.vercel.app/users", {
               method: "POST",
               headers: {
                 "content-type": "application/json",
