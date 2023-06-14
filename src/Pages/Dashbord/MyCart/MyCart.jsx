@@ -31,7 +31,7 @@ const MyCart = () => {
           .then((data) => {
             if (data.deletedCount > 0) {
               refetch();
-              Swal.fire("Deleted!", "Your Class has been deleted.", "success");
+              Swal.fire("Deleted!", "Your Class has been deleted.");
             }
           });
       }
