@@ -1,7 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { useCart } from "../../../hooks/useCart";
-import { usePayment } from "../../../hooks/usePayment";
-import { AuthContext } from "../../../Providers/AuthProvider";
+
 import { usePaidClass } from "../../../hooks/usePaidClass";
 
 const MyEnrolledClass = () => {
