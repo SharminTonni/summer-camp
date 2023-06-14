@@ -16,7 +16,7 @@ const MyEnrolledClass = () => {
         <div key={paidClass._id} className="card w-96 bg-base-100 shadow-xl">
           <div className="card-body flex gap-4">
             <h2 className="card-title">{paidClass?.name}</h2>
-            <p>Price:{paidClass?.price}</p>
+            <p>Price: {paidClass?.price}</p>
           </div>
           <figure>
             <img src={paidClass?.image} alt="Shoes" />
