@@ -2,10 +2,16 @@ import { FaTrash } from "react-icons/fa";
 import { useMyClass } from "../../../hooks/useMyClass";
 import Swal from "sweetalert2";
 import { useAxiosSecure } from "../../../hooks/useAxiosSecure";
+import { usePaidInstructor } from "../../../hooks/usePaidInstrucor";
 
 const MyClasses = () => {
   const [myclasses, refetch] = useMyClass();
   const [axiosSecure] = useAxiosSecure();
+  const [paidInstructor] = usePaidInstructor();
+  const totalStudents = paidInstructor.reduce(
+    (sum, item) => sum + item.students,
+    0
+  );
   //   console.log(myclasses);
   const handleDelete = (myclass) => {
     Swal.fire({
@@ -29,8 +35,12 @@ const MyClasses = () => {
   };
   return (
     <div>
+      <h2 className="text-3xl text-center text-red-600">My Classes</h2>
       <h2 className="text-3xl text-center text-red-600">
-        ---------- My Classes ----------
+        Total Enrolled Classes: {paidInstructor.length}
+      </h2>
+      <h2 className="text-3xl text-center text-red-600">
+        Total Enrolled students: {totalStudents}
       </h2>
 
       <div className="overflow-x-auto">
@@ -45,6 +55,8 @@ const MyClasses = () => {
               <th>students</th>
               <th>price</th>
               <th>status</th>
+              <th>FeedBack</th>
+
               <th>delete</th>
             </tr>
           </thead>
@@ -70,6 +82,8 @@ const MyClasses = () => {
                 <td>{myclass?.students}</td>
                 <td>{myclass?.price}</td>
                 <td>{myclass?.status}</td>
+                <td>{myclass?.feedback?.feedback}</td>
+
                 <th>
                   <button
                     onClick={() => handleDelete(myclass)}

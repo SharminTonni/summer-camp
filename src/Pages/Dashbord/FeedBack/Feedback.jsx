@@ -20,8 +20,21 @@ const Feedback = () => {
     const email = e.target.email.value;
     const name = e.target.name.value;
     const feedback = e.target.feedback.value;
-    const feed_back = { email, feedback, name };
+    const feed_back = { email, feedback, name, classId: id };
     console.log(feed_back);
+    axiosSecure.put("/deniedfeedback", feed_back).then((res) => {
+      if (res.data.modifiedCount > 0) {
+        Swal.fire({
+          title: "Your feedback is send to the class",
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
+        });
+      }
+    });
     axiosSecure.post("/feedback", feed_back).then((res) => {
       if (res.data.insertedId) {
         e.target.reset();

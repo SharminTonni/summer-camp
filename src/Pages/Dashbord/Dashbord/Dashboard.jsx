@@ -74,7 +74,7 @@ const Dashboard = () => {
               </li>
               <li>
                 <NavLink to="/dashboard/feedback">
-                  FeedBack <FaFeatherAlt></FaFeatherAlt>
+                  FeedBacks <FaFeatherAlt></FaFeatherAlt>
                 </NavLink>
               </li>
             </>
@@ -84,9 +84,15 @@ const Dashboard = () => {
             <>
               <li>
                 <NavLink to="/dashboard/mycart">
-                  My Cart
+                  My Selected Classes
                   <FaShoppingCart></FaShoppingCart>
                   <span className="badge">{cart?.length} </span>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/myenrolled">
+                  My enrolled Classes
+                  <FaShoppingCart></FaShoppingCart>
                 </NavLink>
               </li>
               <li>

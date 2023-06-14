@@ -7,6 +7,7 @@ import { useAdmin } from "../../../hooks/useAdmin";
 import { useIsInstructor } from "../../../hooks/useIsInstructor";
 
 const SingleClass = ({ item }) => {
+  // console.log(item.availableSeats);
   //   const { user } = useContext(AuthContext);
 
   const { image, price, name, students, instructorName, _id } = item || "";
@@ -82,7 +83,7 @@ const SingleClass = ({ item }) => {
         <p>Instructor: {instructorName}</p>
         <p>Price: ${price}</p>
         <p>Students: {students}</p>
-        {/* <p>Available Seats: {item?.availableSeats}</p> */}
+        <p>Available Seats: {item?.availableSeats}</p>
         {isAdmin || isInstructorData || item?.availableSeats == 0 ? (
           <button
             disabled

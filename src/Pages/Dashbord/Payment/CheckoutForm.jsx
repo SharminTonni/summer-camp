@@ -4,7 +4,7 @@ import { useAxiosSecure } from "../../../hooks/useAxiosSecure";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import { useCart } from "../../../hooks/useCart";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
 const CheckoutForm = ({ cart, id }) => {
   const [singleCart, setSingleCart] = useState({});
@@ -121,7 +121,6 @@ const CheckoutForm = ({ cart, id }) => {
 
   return (
     <>
-      <p>{user?.email}</p>
       <form className="w-2/3 mx-auto" onSubmit={handleSubmit}>
         <CardElement
           options={{

@@ -19,6 +19,8 @@ import Feedback from "../Pages/Dashbord/FeedBack/Feedback";
 import Payment from "../Pages/Dashbord/Payment/Payment";
 import FeedBackPage from "../Pages/Dashbord/FeedBack/FeedBackPage";
 import ErrorPage from "../Pages/ErrorElement/ErrorPage";
+import MyEnrolledClass from "../Pages/Dashbord/MyEnrolledClass/MyEnrolledClass";
+import MyPayment from "../Pages/Dashbord/Dashbord/MyPayment/MyPayment";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +61,14 @@ const router = createBrowserRouter([
       {
         path: "mycart",
         element: <MyCart></MyCart>,
+      },
+      {
+        path: "myenrolled",
+        element: <MyEnrolledClass></MyEnrolledClass>,
+      },
+      {
+        path: "history",
+        element: <MyPayment></MyPayment>,
       },
       {
         path: "payment/:id",

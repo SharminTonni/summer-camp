@@ -3,10 +3,13 @@ import { useClassesAdmin } from "../../../hooks/useClassesAdmin";
 import Swal from "sweetalert2";
 import { useAxiosSecure } from "../../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const ManageClass = () => {
   const [classesAdmin, refetch] = useClassesAdmin();
   const [axiosSecure] = useAxiosSecure();
+
+  // const [deny, setDeny] = useState(false);
   const handleDeny = (myclass) => {
     axiosSecure.put(`/class/deny/${myclass._id}`).then((res) => {
       if (res.data.modifiedCount > 0) {
@@ -103,7 +106,8 @@ const ManageClass = () => {
                 <td>{myclass?.email}</td>
 
                 <td>
-                  {myclass?.status == "deny" ? (
+                  {myclass?.status == "deny" ||
+                  myclass?.status == "approved" ? (
                     <button
                       disabled
                       className="btn btn-ghost rounded-full text-white bg-red-600"
@@ -119,8 +123,10 @@ const ManageClass = () => {
                     </button>
                   )}
                 </td>
+
                 <td>
-                  {myclass?.status == "approved" ? (
+                  {myclass?.status == "approved" ||
+                  myclass?.status == "deny" ? (
                     <button
                       disabled
                       className="btn btn-ghost rounded-full text-white bg-red-600"
@@ -137,13 +143,26 @@ const ManageClass = () => {
                   )}
                 </td>
 
-                <th>
-                  <Link to={`/dashboard/feedback/${myclass._id}`}>
-                    <button className="btn btn-ghost text-white bg-amber-600">
-                      FeedBack
-                    </button>
-                  </Link>
-                </th>
+                {myclass.status == "deny" ? (
+                  <th>
+                    <Link to={`/dashboard/feedback/${myclass._id}`}>
+                      <button className="btn btn-ghost text-white bg-amber-600">
+                        FeedBack
+                      </button>
+                    </Link>
+                  </th>
+                ) : (
+                  <th>
+                    <Link to={`/dashboard/feedback/${myclass._id}`}>
+                      <button
+                        disabled
+                        className="btn btn-ghost text-white bg-amber-600"
+                      >
+                        FeedBack
+                      </button>
+                    </Link>
+                  </th>
+                )}
                 <th>
                   <button
                     onClick={() => handleDelete(myclass)}
