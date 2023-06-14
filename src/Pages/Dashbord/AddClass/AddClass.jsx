@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 
 const imageToken = import.meta.env.VITE_IMAGE_TOKEN;
 const AddClass = () => {
-  const [students, setStudents] = useState("");
   const { user } = useContext(AuthContext);
   const url = `https://api.imgbb.com/1/upload?key=${imageToken}`;
   const [axiosSecure] = useAxiosSecure();
