@@ -3,13 +3,13 @@ import { loadStripe } from "@stripe/stripe-js";
 
 import CheckoutForm from "./CheckoutForm";
 import { Elements } from "@stripe/react-stripe-js";
-import { useCart } from "../../../hooks/useCart";
+
 import { useParams } from "react-router-dom";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_CODE);
 const Payment = () => {
   const { id } = useParams();
-  const [cart] = useCart();
+
   console.log(id);
   return (
     <div>
