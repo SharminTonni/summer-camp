@@ -17,7 +17,7 @@ const Payment = () => {
         ---------- Payment Your Booked Items ----------
       </h2>
       <Elements stripe={stripePromise}>
-        <CheckoutForm id={id} cart={cart}></CheckoutForm>
+        <CheckoutForm id={id}></CheckoutForm>
       </Elements>
     </div>
   );
