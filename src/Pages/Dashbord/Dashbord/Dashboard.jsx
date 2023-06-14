@@ -24,7 +24,7 @@ const Dashboard = () => {
 
   //   Todo make admin by server
   const [isAdmin, isAdminLoading] = useAdmin();
-  const { user } = useContext(AuthContext);
+
   const [isInstructorData, isInstructorLoading] = useIsInstructor();
   //   const isAdmin = true;
   return (
