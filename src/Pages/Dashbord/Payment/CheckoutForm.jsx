@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import { useCart } from "../../../hooks/useCart";
 import { NavLink, useParams } from "react-router-dom";
 
-const CheckoutForm = ({ cart, id }) => {
+const CheckoutForm = ({ id }) => {
   const [singleCart, setSingleCart] = useState({});
   useEffect(() => {
     fetch(`https://summer-camp-server-alpha-gold.vercel.app/cart/${id}`)
